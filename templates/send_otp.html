@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <h1>Enter details</h1>
+        <form method="post">
+            {% csrf_token %}
+            {% if error_message %}
+            <p class="error">{{ error_message }}</p>
+            {% endif %}
+            {% comment %} <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <label for="mobile_number">Mobile Number:</label>
+            <input type="tel" id="mobile_number" name="mobile_number" required>
+            <br> {% endcomment %}
+            {{form.as_p}}
+            <button type="submit">Submit</button>
+        
+        </form>
+    </body>
+</html>

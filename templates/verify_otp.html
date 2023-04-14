@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+  <h1>Enter the otp sent to your mobile number</h1>
+  {% if error_message %}
+    <p class="error">{{ error_message }}</p>
+  {% endif %}
+  <form method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="name" value="{{ name }}">
+    <input type="hidden" name="email" value="{{ email }}">
+    <input type="hidden" name="mobile_number" value="{{ mobile_number }}">
+      <label for="otp">OTP:</label>
+      <input type="text" name="otp" required>
+      <br>
+    <button type="submit">Verify OTP</button>
+  </form>
+</body>
+</html>
