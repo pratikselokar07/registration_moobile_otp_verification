@@ -63,8 +63,7 @@ from django.contrib import messages
 #         return render(request, 'send_otp.html')
 
 def send_otp(request):
-    error_message = None  # Define error_message outside of if blocks
-
+    error_message = None 
     if request.method == 'POST':
         form = SendOtpForm(request.POST)
         if form.is_valid():
@@ -82,8 +81,8 @@ def send_otp(request):
 
                 # Generate an OTP using the Twilio Verify API
                 account_sid = "AC1114c2b6981bb296484425b66235f1ae"
-                auth_token = "a967a5e590ce4139086af0a178f6e824"
-                verification_sid = "VA71aecf834b5caf4696289d5167f48381"
+                auth_token = "b2f0098e5125b867b533ff26d176ab68"
+                verification_sid = "VA35d93d7d44a064dcb681895199f2fbed"
                 client = Client(account_sid, auth_token)
                 verification = client.verify.services(verification_sid).verifications.create(to='+91' + mobile_number, channel='sms')
 
@@ -121,7 +120,7 @@ def verify_otp(request):
         mobile_number = request.session.get('mobile_number')
         name = request.session.get('name')
         email = request.session.get('email')
-        verification_sid = "VA71aecf834b5caf4696289d5167f48381"
+        verification_sid = request.session.get('verification_sid')
         print(verification_sid)
 
         # Validate the OTP using the Twilio Verify API
